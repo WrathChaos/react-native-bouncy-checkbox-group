@@ -44,7 +44,7 @@ const BouncyCheckboxGroup: React.FC<IBouncyCheckboxGroupProps> = ({
             item.id === (selectedItem ? selectedItem?.id : initial);
           return (
             <BouncyCheckbox
-              //   {...item}
+              {...item}
               key={item.id}
               disableBuiltInState
               isChecked={isActive}
