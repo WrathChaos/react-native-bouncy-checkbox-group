@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView } from "react-native";
 import AppleHeader from "react-native-apple-header";
 import BouncyCheckboxGroup, {
   ICheckboxButton,
-} from "./lib/BouncyCheckboxGroup";
+} from "react-native-bouncy-checkbox-group";
 
 const _iconStyle = (borderColor: string) => ({
   height: 50,
