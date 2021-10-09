@@ -12,7 +12,7 @@
 
 <p align="center">
   <img alt="React Native Bouncy Checkbox Group"
-        src="assets/Screenshots/react-native-bouncy-checkbox-group.png.gif" />
+        src="assets/Screenshots/react-native-bouncy-checkbox-group.png.gif" height="850" />
 </p>
 
 # Installation
