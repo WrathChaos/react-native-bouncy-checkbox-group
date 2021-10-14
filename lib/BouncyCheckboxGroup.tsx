@@ -12,7 +12,7 @@ import useStateWithCallback from "./helpers/useStateWithCallback";
 type CustomStyleProp = StyleProp<ViewStyle> | Array<StyleProp<ViewStyle>>;
 
 export interface ICheckboxButton extends IBouncyCheckboxProps {
-  id: number;
+  id: string | number;
 }
 
 interface IBouncyCheckboxGroupProps {
@@ -20,10 +20,12 @@ interface IBouncyCheckboxGroupProps {
   initial?: number;
   data: ICheckboxButton[];
   onChange: (selectedItem: ICheckboxButton) => void;
+  checkboxProps?: IBouncyCheckboxProps;
 }
 
 const BouncyCheckboxGroup: React.FC<IBouncyCheckboxGroupProps> = ({
   style,
+  checkboxProps,
   initial,
   data,
   onChange,
@@ -44,6 +46,7 @@ const BouncyCheckboxGroup: React.FC<IBouncyCheckboxGroupProps> = ({
             item.id === (selectedItem ? selectedItem?.id : initial);
           return (
             <BouncyCheckbox
+              {...checkboxProps}
               {...item}
               key={item.id}
               disableBuiltInState
