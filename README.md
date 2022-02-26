@@ -107,7 +107,7 @@ should work of the example project.
 
 ## Customization (Optionals)
 
-#### [React Native Bouncy Checkbox Customizations](https://github.com/WrathChaos/react-native-bouncy-checkbox#configuration---props)
+## [React Native Bouncy Checkbox Customizations](https://github.com/WrathChaos/react-native-bouncy-checkbox#configuration---props)
 
 You can use all of the customiztion options from the rn bouncy checkbox. You NEED to add the styling and props into the `data`. Therefore, you can customize each of the checkboxes easly.
 
