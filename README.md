@@ -105,6 +105,7 @@ should work of the example project.
 | data     | ICheckboxButton[] | undefined | set the checkboxes as a data                              |
 | onChange |     function      | undefined | set your own logic when the group of checkbox is selected |
 | checkboxProps | IBouncyCheckboxProps | undefined | default props for all checkboxes |
+| initial | number | undefined | default selected item (id of selection object) |
 
 ## Customization (Optionals)
 
