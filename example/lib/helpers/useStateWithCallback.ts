@@ -1,10 +1,4 @@
-import {
-  useRef,
-  useState,
-  useEffect,
-  useCallback,
-  SetStateAction,
-} from "react";
+import {useRef, useState, useEffect, useCallback, SetStateAction} from 'react';
 
 type Callback<T> = (value?: any) => void;
 type DispatchWithCallback<T> = (value: any, callback?: Callback<any>) => void;

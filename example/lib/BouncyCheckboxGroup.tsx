@@ -1,12 +1,12 @@
-import * as React from "react";
-import { View, StyleProp, ViewStyle } from "react-native";
+import * as React from 'react';
+import {View, StyleProp, ViewStyle} from 'react-native';
 import BouncyCheckbox, {
   BouncyCheckboxProps,
-} from "react-native-bouncy-checkbox";
-import styles from "./BouncyCheckboxGroup.style";
-import useStateWithCallback from "./helpers/useStateWithCallback";
+} from 'react-native-bouncy-checkbox';
+import styles from './BouncyCheckboxGroup.style';
+import useStateWithCallback from './helpers/useStateWithCallback';
 
-export interface CheckboxButton extends Omit<BouncyCheckboxProps, "id"> {
+export interface CheckboxButton extends Omit<BouncyCheckboxProps, 'id'> {
   id: string | number;
 }
 
@@ -30,7 +30,7 @@ const BouncyCheckboxGroup: React.FC<BouncyCheckboxGroupProps> = ({
   >(undefined);
 
   const handleItemPress = (item: CheckboxButton) => {
-    setSelectedItem(item, (newItem) => onChange && onChange(newItem));
+    setSelectedItem(item, newItem => onChange && onChange(newItem));
   };
 
   return (
@@ -41,10 +41,10 @@ const BouncyCheckboxGroup: React.FC<BouncyCheckboxGroupProps> = ({
             item.id === (selectedItem ? selectedItem?.id : initial);
           return (
             <BouncyCheckbox
-              innerIconStyle={{ borderWidth: 0 }}
+              innerIconStyle={{borderWidth: 0}}
               {...checkboxProps}
               {...item}
-              key={item.id}
+              key={item.checkboxId}
               isChecked={isActive}
               onPress={() => handleItemPress(item)}
             />

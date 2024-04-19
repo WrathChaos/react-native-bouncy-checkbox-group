@@ -28,7 +28,7 @@ npm i react-native-bouncy-checkbox-group
 <h5><i>IMPORTANT! You need install them</i></h5>
 
 ```js
-"react-native-bouncy-checkbox": ">= 2.1.5"
+"react-native-bouncy-checkbox": ">= 4.0.0"
 ```
 
 # Usage
@@ -37,7 +37,7 @@ npm i react-native-bouncy-checkbox-group
 
 ```jsx
 import BouncyCheckboxGroup, {
-  ICheckboxButton,
+  CheckboxButton,
 } from "react-native-bouncy-checkbox-group";
 ```
 
@@ -46,7 +46,7 @@ import BouncyCheckboxGroup, {
 ```jsx
 <BouncyCheckboxGroup
   data={staticData}
-  onChange={(selectedItem: ICheckboxButton) => {
+  onChange={(selectedItem: CheckboxButton) => {
     console.log("SelectedItem: ", JSON.stringify(selectedItem));
   }}
 />
@@ -58,7 +58,7 @@ import BouncyCheckboxGroup, {
 <BouncyCheckboxGroup
   data={verticalStaticData}
   style={{ flexDirection: "column" }}
-  onChange={(selectedItem: ICheckboxButton) => {
+  onChange={(selectedItem: CheckboxButton) => {
     console.log("SelectedItem: ", JSON.stringify(selectedItem));
   }}
 />
@@ -66,7 +66,7 @@ import BouncyCheckboxGroup, {
 
 ## Data Format
 
-You MUST follow this data format as `ICheckboxButton`
+You MUST follow this data format as `CheckboxButton`
 
 ```json
 [
