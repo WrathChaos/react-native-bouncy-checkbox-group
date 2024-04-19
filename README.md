@@ -113,6 +113,114 @@ should work of the example project.
 
 You can use all of the customiztion options from the rn bouncy checkbox. You NEED to add the styling and props into the `data`. Therefore, you can customize each of the checkboxes easily.
 
+## Advanced Usage Example JSON Data
+
+```tsx
+const staticData: CheckboxButton[] = [
+    {
+        id: 0,
+        fillColor: '#ff7473',
+        unFillColor: '#fbbfbb',
+        iconStyle: _iconStyle('#fbbfbb'),
+        iconImageStyle: styles.iconImageStyle,
+    },
+    {
+        id: 1,
+        fillColor: '#5567e9',
+        unFillColor: '#afb5f5',
+        iconStyle: _iconStyle('#afb5f5'),
+        iconImageStyle: styles.iconImageStyle,
+    },
+    {
+        id: 2,
+        fillColor: '#a98ae7',
+        unFillColor: '#cab6f4',
+        iconStyle: _iconStyle('#cab6f4'),
+        iconImageStyle: styles.iconImageStyle,
+    },
+    {
+        id: 3,
+        fillColor: '#fcb779',
+        unFillColor: '#ffd1a7',
+        iconStyle: _iconStyle('#ffd1a7'),
+        iconImageStyle: styles.iconImageStyle,
+    },
+    {
+        id: 4,
+        fillColor: '#2be055',
+        unFillColor: '#cbf2d5',
+        iconStyle: _iconStyle('#cbf2d5'),
+        iconImageStyle: styles.iconImageStyle,
+    },
+];
+```
+
+
+```tsx
+
+const verticalStaticData: CheckboxButton[] = [
+    {
+        id: 0,
+        text: 'Watermelon',
+        fillColor: '#ff7473',
+        unFillColor: '#fbbfbb',
+        iconStyle: _iconStyle('#fbbfbb'),
+        textStyle: styles.textStyle,
+        style: styles.verticalStyle,
+        iconImageStyle: styles.iconImageStyle,
+    },
+    {
+        id: 1,
+        text: 'Ultramarine Blue',
+        fillColor: '#5567e9',
+        unFillColor: '#afb5f5',
+        iconStyle: _iconStyle('#afb5f5'),
+        textStyle: styles.textStyle,
+        style: styles.verticalStyle,
+        iconImageStyle: styles.iconImageStyle,
+    },
+    {
+        id: 2,
+        text: 'Soft Purple',
+        fillColor: '#a98ae7',
+        unFillColor: '#cab6f4',
+        iconStyle: _iconStyle('#cab6f4'),
+        textStyle: styles.textStyle,
+        style: styles.verticalStyle,
+        iconImageStyle: styles.iconImageStyle,
+    },
+    {
+        id: 3,
+        text: 'Takao',
+        fillColor: '#fcb779',
+        unFillColor: '#ffd1a7',
+        iconStyle: _iconStyle('#ffd1a7'),
+        textStyle: styles.textStyle,
+        style: styles.verticalStyle,
+        iconImageStyle: styles.iconImageStyle,
+    },
+    {
+        id: 4,
+        text: 'Malachite',
+        fillColor: '#2be055',
+        unFillColor: '#cbf2d5',
+        iconStyle: _iconStyle('#cbf2d5'),
+        textStyle: styles.textStyle,
+        style: styles.verticalStyle,
+        iconImageStyle: styles.iconImageStyle,
+    },
+];
+```
+
+```tsx
+const _iconStyle = (borderColor: string) => ({
+  height: 50,
+  width: 50,
+  borderRadius: 25,
+  borderColor: borderColor,
+});
+```
+
 ## Future Plans
 
 - [x] ~~LICENSE~~
