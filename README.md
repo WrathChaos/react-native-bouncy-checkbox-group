@@ -4,6 +4,17 @@ A fully customizable, animated checkbox group component for React Native applica
 
 ![react-native-bouncy-checkbox-group.gif](assets/Screenshots/react-native-bouncy-checkbox-group.gif)
 
+## 🎉 Version 2.0.0 Now Available!
+
+We're excited to announce the release of version 2.0.0 with several new features and improvements:
+
+- **Multiple Selection Mode**: Now supports selecting multiple checkboxes with the `multiple` prop
+- **Always Select Mode**: Ensures one checkbox is always selected with the `alwaysSelect` prop
+- **Improved Type Support**: Better TypeScript definitions and support for both string and numeric IDs
+- **Animation Control**: Customize animation duration with the `animationDuration` prop
+- **Flexible Spacing**: Control spacing between checkboxes with the `spacing` prop
+
+[See full release notes](https://github.com/WrathChaos/react-native-bouncy-checkbox-group/releases/tag/v2.0.0)
 
 ## Features
 
@@ -160,7 +171,6 @@ const customData = [
     },
     size: 24
   },
-  // More items...
 ];
 ```
 
@@ -184,6 +194,39 @@ const customData = [
   // More items...
 ];
 ```
+
+### Resetting Selection
+
+You can programmatically reset checkbox selection by managing state externally:
+
+```jsx
+const [selectedId, setSelectedId] = useState(0); // Start with initial selection
+
+// Reset function
+const resetSelection = () => {
+  setSelectedId(null); // Set to null to clear selection
+};
+
+// In your component
+return (
+  <>
+    <BouncyCheckboxGroup
+      data={checkboxData}
+      initial={selectedId}
+      onChange={(selectedItem) => {
+        // If you want default behavior (clicking selected item deselects it)
+        // just use alwaysSelect={false} (the default)
+        
+        // For programmatic control:
+        setSelectedId(selectedItem.id);
+      }}
+    />
+    <Button title="Reset Selection" onPress={resetSelection} />
+  </>
+);
+```
+
+> Note: By default (`alwaysSelect={false}`), clicking an already selected checkbox will deselect it. Use `alwaysSelect={true}` for radio button behavior where one checkbox must always be selected.
 
 ## Props
 
