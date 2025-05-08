@@ -27,7 +27,7 @@ export interface BouncyCheckboxGroupProps {
   /**
    * Ensures one checkbox is always selected (works only in single select mode)
    * If trying to unselect the only selected item, it will remain selected
-   * @default false 
+   * @default false
    */
   alwaysSelect?: boolean;
   /**
@@ -59,7 +59,7 @@ const BouncyCheckboxGroup: React.FC<BouncyCheckboxGroupProps> = ({
   itemContainerStyle,
 }) => {
   const normalizeId = (id: SelectionID): string => String(id);
-  
+
   const getInitialSelection = React.useCallback((): CheckboxItem[] => {
     if (!initial) {
       // If alwaysSelect is true and no initial is provided, select the first item
@@ -68,112 +68,122 @@ const BouncyCheckboxGroup: React.FC<BouncyCheckboxGroupProps> = ({
       }
       return [];
     }
-    
+
     // Convert the initial value to array of strings for comparison
-    const initialIds = Array.isArray(initial) 
-      ? initial.map(normalizeId) 
+    const initialIds = Array.isArray(initial)
+      ? initial.map(normalizeId)
       : [normalizeId(initial)];
-    
-    return data.filter(item => initialIds.includes(normalizeId(item.id)));
+
+    return data.filter((item) => initialIds.includes(normalizeId(item.id)));
   }, [initial, data, alwaysSelect, multiple]);
 
-  const [selectedItems, setSelectedItems] = useStateWithCallback<CheckboxItem[]>(
-    getInitialSelection()
-  );
+  const [selectedItems, setSelectedItems] = useStateWithCallback<
+    CheckboxItem[]
+  >(getInitialSelection());
 
   // Handle selection changes
-  const updateSelection = React.useCallback((newItems: CheckboxItem[]) => {
-    setSelectedItems(newItems, (items) => {
-      onChange(multiple ? items : items[0]);
-    });
-  }, [multiple, onChange, setSelectedItems]);
+  const updateSelection = React.useCallback(
+    (newItems: CheckboxItem[]) => {
+      setSelectedItems(newItems, (items) => {
+        onChange(multiple ? items : items[0]);
+      });
+    },
+    [multiple, onChange, setSelectedItems],
+  );
 
   // Check if a specific item is currently selected
-  const isItemSelected = React.useCallback((item: CheckboxItem): boolean => {
-    return selectedItems.some(
-      (selectedItem: CheckboxItem) => normalizeId(selectedItem.id) === normalizeId(item.id)
-    );
-  }, [selectedItems]);
-  
-  const handleItemPress = React.useCallback((item: CheckboxItem) => {
-    if (multiple) {
-      // For multiple selection mode
-      const isSelected = isItemSelected(item);
-      
-      let newSelectedItems: CheckboxItem[];
-      if (isSelected) {
-        // Remove from selection
-        newSelectedItems = selectedItems.filter(
-          (selectedItem: CheckboxItem) => normalizeId(selectedItem.id) !== normalizeId(item.id)
-        );
+  const isItemSelected = React.useCallback(
+    (item: CheckboxItem): boolean => {
+      return selectedItems.some(
+        (selectedItem: CheckboxItem) =>
+          normalizeId(selectedItem.id) === normalizeId(item.id),
+      );
+    },
+    [selectedItems],
+  );
+
+  const handleItemPress = React.useCallback(
+    (item: CheckboxItem) => {
+      if (multiple) {
+        // For multiple selection mode
+        const isSelected = isItemSelected(item);
+
+        let newSelectedItems: CheckboxItem[];
+        if (isSelected) {
+          // Remove from selection
+          newSelectedItems = selectedItems.filter(
+            (selectedItem: CheckboxItem) =>
+              normalizeId(selectedItem.id) !== normalizeId(item.id),
+          );
+        } else {
+          // Add to selection
+          newSelectedItems = [...selectedItems, item];
+        }
+
+        updateSelection(newSelectedItems);
       } else {
-        // Add to selection
-        newSelectedItems = [...selectedItems, item];
+        // For single selection mode
+        const isSelected = isItemSelected(item);
+
+        // If alwaysSelect is true and this is the only selected item,
+        // don't allow deselection by tapping it again
+        if (isSelected && alwaysSelect && selectedItems.length === 1) {
+          return;
+        }
+
+        // If the item is already selected and we can deselect it, deselect it
+        // Otherwise, select the new item
+        const newSelectedItems = isSelected ? [] : [item];
+        updateSelection(newSelectedItems);
       }
-      
-      updateSelection(newSelectedItems);
-    } else {
-      // For single selection mode
-      const isSelected = isItemSelected(item);
-      
-      // If alwaysSelect is true and this is the only selected item, 
-      // don't allow deselection by tapping it again
-      if (isSelected && alwaysSelect && selectedItems.length === 1) {
-        return;
-      }
-      
-      // If the item is already selected and we can deselect it, deselect it
-      // Otherwise, select the new item
-      const newSelectedItems = isSelected ? [] : [item];
-      updateSelection(newSelectedItems);
-    }
-  }, [multiple, selectedItems, alwaysSelect, isItemSelected, updateSelection]);
+    },
+    [multiple, selectedItems, alwaysSelect, isItemSelected, updateSelection],
+  );
 
   // Render a single checkbox with appropriate configuration
-  const renderCheckbox = React.useCallback((item: CheckboxItem) => {
-    const { id, ...checkboxItemProps } = item;
-    const isSelected = isItemSelected(item);
-    
-    // Determine if this checkbox should be disallowed from toggling off
-    // (When it's an already selected item in alwaysSelect mode)
-    const isUntoggleable = alwaysSelect && !multiple && isSelected && selectedItems.length === 1;
-    
-    return (
-      <View 
-        key={normalizeId(id)}
-        style={[
-          { marginRight: spacing },
-          itemContainerStyle
-        ]}
-      >
-        <BouncyCheckbox
-          innerIconStyle={{ borderWidth: 0 }}
-          bounceEffect={0.8}
-          bounceFriction={10}
-          useNativeDriver={true}
-          {...checkboxProps}
-          {...checkboxItemProps}
-          isChecked={isSelected}
-          useBuiltInState={!isUntoggleable}
-          onPress={() => handleItemPress(item)}
-        />
-      </View>
-    );
-  }, [
-    spacing, 
-    itemContainerStyle, 
-    checkboxProps, 
-    alwaysSelect, 
-    multiple, 
-    selectedItems, 
-    isItemSelected, 
-    handleItemPress
-  ]);
+  const renderCheckbox = React.useCallback(
+    (item: CheckboxItem) => {
+      const { id, ...checkboxItemProps } = item;
+      const isSelected = isItemSelected(item);
+
+      // Determine if this checkbox should be disallowed from toggling off
+      // (When it's an already selected item in alwaysSelect mode)
+      const isUntoggleable =
+        alwaysSelect && !multiple && isSelected && selectedItems.length === 1;
+
+      return (
+        <View
+          key={normalizeId(id)}
+          style={[{ marginRight: spacing }, itemContainerStyle]}
+        >
+          <BouncyCheckbox
+            innerIconStyle={{ borderWidth: 0 }}
+            bounceEffect={0.8}
+            bounceFriction={10}
+            useNativeDriver={true}
+            {...checkboxProps}
+            {...checkboxItemProps}
+            isChecked={isSelected}
+            useBuiltInState={!isUntoggleable}
+            onPress={() => handleItemPress(item)}
+          />
+        </View>
+      );
+    },
+    [
+      spacing,
+      itemContainerStyle,
+      checkboxProps,
+      alwaysSelect,
+      multiple,
+      selectedItems,
+      isItemSelected,
+      handleItemPress,
+    ],
+  );
 
   return (
-    <View style={[styles.container, style]}>
-      {data.map(renderCheckbox)}
-    </View>
+    <View style={[styles.container, style]}>{data.map(renderCheckbox)}</View>
   );
 };
 

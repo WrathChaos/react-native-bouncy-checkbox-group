@@ -1,6 +1,6 @@
 {
   "name": "react-native-bouncy-checkbox-group",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Fully customizable bouncy checkbox group for React Native",
   "main": "./build/dist/BouncyCheckboxGroup.js",
   "repository": "git@github.com:WrathChaos/react-native-bouncy-checkbox-group.git",
@@ -18,6 +18,9 @@
     "switch-group",
     "bouncy",
     "animated",
+    "multiple-selection",
+    "radio-buttons",
+    "always-select",
     "FreakyCoder",
     "freakycoder",
     "kuray",
@@ -29,7 +32,7 @@
     "rn"
   ],
   "dependencies": {
-    "react-native-bouncy-checkbox": ">= 4.0.0"
+    "react-native-bouncy-checkbox": "^4.1.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
