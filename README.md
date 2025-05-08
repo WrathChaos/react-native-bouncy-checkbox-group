@@ -2,6 +2,9 @@
 
 A fully customizable, animated checkbox group component for React Native applications.
 
+![react-native-bouncy-checkbox-group.gif](assets/Screenshots/react-native-bouncy-checkbox-group.gif)
+
+
 ## Features
 
 - Single and multiple selection support
